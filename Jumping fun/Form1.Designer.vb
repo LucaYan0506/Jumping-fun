@@ -25,18 +25,22 @@ Partial Class Form1
         Me.AccountToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoginToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CreateAnAccountToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckPreviousReceiptsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WhyCreateAnAccountToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HeloToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContactToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FeedbackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.SignOutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'AccountToolStripMenuItem
         '
-        Me.AccountToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoginToolStripMenuItem, Me.CreateAnAccountToolStripMenuItem})
+        Me.AccountToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoginToolStripMenuItem, Me.CreateAnAccountToolStripMenuItem, Me.ToolStripMenuItem1, Me.CheckPreviousReceiptsToolStripMenuItem, Me.WhyCreateAnAccountToolStripMenuItem, Me.SignOutToolStripMenuItem})
         Me.AccountToolStripMenuItem.Name = "AccountToolStripMenuItem"
         Me.AccountToolStripMenuItem.Size = New System.Drawing.Size(64, 20)
         Me.AccountToolStripMenuItem.Text = "Account"
@@ -44,14 +48,26 @@ Partial Class Form1
         'LoginToolStripMenuItem
         '
         Me.LoginToolStripMenuItem.Name = "LoginToolStripMenuItem"
-        Me.LoginToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
+        Me.LoginToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
         Me.LoginToolStripMenuItem.Text = "Login"
         '
         'CreateAnAccountToolStripMenuItem
         '
         Me.CreateAnAccountToolStripMenuItem.Name = "CreateAnAccountToolStripMenuItem"
-        Me.CreateAnAccountToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
+        Me.CreateAnAccountToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
         Me.CreateAnAccountToolStripMenuItem.Text = "Register"
+        '
+        'CheckPreviousReceiptsToolStripMenuItem
+        '
+        Me.CheckPreviousReceiptsToolStripMenuItem.Name = "CheckPreviousReceiptsToolStripMenuItem"
+        Me.CheckPreviousReceiptsToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.CheckPreviousReceiptsToolStripMenuItem.Text = "Check previous receipts"
+        '
+        'WhyCreateAnAccountToolStripMenuItem
+        '
+        Me.WhyCreateAnAccountToolStripMenuItem.Name = "WhyCreateAnAccountToolStripMenuItem"
+        Me.WhyCreateAnAccountToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.WhyCreateAnAccountToolStripMenuItem.Text = "Why create an account"
         '
         'HeloToolStripMenuItem
         '
@@ -96,6 +112,18 @@ Partial Class Form1
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'SignOutToolStripMenuItem
+        '
+        Me.SignOutToolStripMenuItem.Name = "SignOutToolStripMenuItem"
+        Me.SignOutToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.SignOutToolStripMenuItem.Text = "Sign out"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(199, 22)
+        Me.ToolStripMenuItem1.Text = "Manage account"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -122,4 +150,8 @@ Partial Class Form1
     Friend WithEvents FeedbackToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents Button1 As Button
+    Friend WithEvents CheckPreviousReceiptsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents WhyCreateAnAccountToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents SignOutToolStripMenuItem As ToolStripMenuItem
 End Class

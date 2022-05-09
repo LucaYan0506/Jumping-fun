@@ -70,7 +70,7 @@ Partial Class book_form
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.ListBox5 = New System.Windows.Forms.ListBox()
         Me.ListBox6 = New System.Windows.Forms.ListBox()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.bck_btn2 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.ListBox3 = New System.Windows.Forms.ListBox()
         Me.ListBox2 = New System.Windows.Forms.ListBox()
@@ -562,7 +562,7 @@ Partial Class book_form
         '
         Me.TabPage3.Controls.Add(Me.ListBox5)
         Me.TabPage3.Controls.Add(Me.ListBox6)
-        Me.TabPage3.Controls.Add(Me.Button3)
+        Me.TabPage3.Controls.Add(Me.bck_btn2)
         Me.TabPage3.Controls.Add(Me.Button2)
         Me.TabPage3.Controls.Add(Me.ListBox3)
         Me.TabPage3.Controls.Add(Me.ListBox2)
@@ -595,14 +595,14 @@ Partial Class book_form
         Me.ListBox6.Size = New System.Drawing.Size(286, 25)
         Me.ListBox6.TabIndex = 18
         '
-        'Button3
+        'bck_btn2
         '
-        Me.Button3.Location = New System.Drawing.Point(8, 281)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 32)
-        Me.Button3.TabIndex = 17
-        Me.Button3.Text = "Back"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.bck_btn2.Location = New System.Drawing.Point(8, 281)
+        Me.bck_btn2.Name = "bck_btn2"
+        Me.bck_btn2.Size = New System.Drawing.Size(75, 32)
+        Me.bck_btn2.TabIndex = 17
+        Me.bck_btn2.Text = "Back"
+        Me.bck_btn2.UseVisualStyleBackColor = True
         '
         'Button2
         '
@@ -717,7 +717,7 @@ Partial Class book_form
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents ListBox5 As ListBox
     Friend WithEvents ListBox6 As ListBox
-    Friend WithEvents Button3 As Button
+    Friend WithEvents bck_btn2 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents TextBox5 As TextBox
 End Class

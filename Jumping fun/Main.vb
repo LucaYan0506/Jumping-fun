@@ -2,6 +2,7 @@
     Dim book_system As New book_form
     Dim help As New help_form
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        Me.Hide()
         book_system.ShowDialog()
     End Sub
 
