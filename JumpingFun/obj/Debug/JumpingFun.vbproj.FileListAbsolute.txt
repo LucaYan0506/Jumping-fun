@@ -25,3 +25,16 @@ D:\School\IT\Visual Basic\JumpingFun\JumpingFun\obj\Debug\JumpingFun.vbproj.Core
 D:\School\IT\Visual Basic\JumpingFun\JumpingFun\obj\Debug\JumpingFun.exe
 D:\School\IT\Visual Basic\JumpingFun\JumpingFun\obj\Debug\JumpingFun.xml
 D:\School\IT\Visual Basic\JumpingFun\JumpingFun\obj\Debug\JumpingFun.pdb
+C:\Users\1418663\Desktop\Jumping-fun\JumpingFun\bin\Debug\JumpingFun.exe.config
+C:\Users\1418663\Desktop\Jumping-fun\JumpingFun\bin\Debug\JumpingFun.exe
+C:\Users\1418663\Desktop\Jumping-fun\JumpingFun\bin\Debug\JumpingFun.pdb
+C:\Users\1418663\Desktop\Jumping-fun\JumpingFun\bin\Debug\JumpingFun.xml
+C:\Users\1418663\Desktop\Jumping-fun\JumpingFun\obj\Debug\JumpingFun.vbprojAssemblyReference.cache
+C:\Users\1418663\Desktop\Jumping-fun\JumpingFun\obj\Debug\JumpingFun.BookSystem.resources
+C:\Users\1418663\Desktop\Jumping-fun\JumpingFun\obj\Debug\JumpingFun.Help.resources
+C:\Users\1418663\Desktop\Jumping-fun\JumpingFun\obj\Debug\JumpingFun.Main.resources
+C:\Users\1418663\Desktop\Jumping-fun\JumpingFun\obj\Debug\JumpingFun.Resources.resources
+C:\Users\1418663\Desktop\Jumping-fun\JumpingFun\obj\Debug\JumpingFun.vbproj.GenerateResource.cache
+C:\Users\1418663\Desktop\Jumping-fun\JumpingFun\obj\Debug\JumpingFun.exe
+C:\Users\1418663\Desktop\Jumping-fun\JumpingFun\obj\Debug\JumpingFun.xml
+C:\Users\1418663\Desktop\Jumping-fun\JumpingFun\obj\Debug\JumpingFun.pdb

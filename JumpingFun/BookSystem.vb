@@ -3,6 +3,42 @@
     Dim curr_date As Date = Date.Now
     Dim current_tab As Integer = 0
 
+    'variable to calculate to total cost
+    Const adminCost As Integer = 10
+    Const guestsFee As Integer = 5
+    Dim nGuests As Integer
+    Dim ballonCost As Double = 7.5
+    Dim nBallons As Integer
+    Const bagCost As Integer = 3
+    Const bottleCost As Integer = 5
+    Const sockCost As Double = 2.5
+    Const bannerCost As Integer = 5
+    Const letterCost As Integer = 1
+    Const discount As Integer = 10
+    Dim totalCost As Double
+    Dim organiserName, address, post_code, phoneNumber As String
+    Dim dateParty As Date
+
+    Dim currentTabPageIndex = 0
+
+    Function bookingDetailLocked() As Boolean
+        organiserName = customer_nameTxt.Text
+        address = addressTxt.Text
+        post_code = post_codeTxt.Text
+        phoneNumber = phone_numberTxt.Text
+
+        If organiserName = "" Or address = "" Or post_code = "" Or phoneNumber = "" Or date_paryLbl.Text = "Date of party" Then
+            Return True
+        End If
+
+        Return False
+    End Function
+
+    Function partyDetailLocked() As Boolean
+        nGuests = Integer.Parse(n_peopleCombobx.SelectedItem)
+        Return nGuests = Nothing
+    End Function
+
     Private Sub show_days()
         'Find the first day of the month
         Dim first_day As Date = New Date(curr_date.Year, curr_date.Month, 1)
@@ -82,6 +118,7 @@
             MsgBox("Invalid date")
         Else
             date_paryLbl.Text = "Date of party (" + sender.name + "/" + curr_date.ToString("MM") + "/" + curr_date.ToString("yyyy") + ")"
+            dateParty = New Date(curr_date.Year, curr_date.Month, Integer.Parse(sender.name))
         End If
     End Sub
 
@@ -94,8 +131,16 @@
     End Sub
 
     Private Sub BookSystem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'show dates of the current month
         Calendar_date.Text = curr_date.ToString("MMMM") & " " & curr_date.Year
         show_days()
+
+        'initilize value in the combobox
+        n_ballonsCombobx.Items.Add(0)
+        For i = 1 To 10
+            n_peopleCombobx.Items.Add(i * 6)
+            n_ballonsCombobx.Items.Add(i * 5)
+        Next
     End Sub
 
     Private Sub nxt_btn_Click(sender As Object, e As EventArgs) Handles nxt_monthBtn.Click
@@ -131,4 +176,58 @@
         show_days()
     End Sub
 
+    Private Sub TabControl_Selecting(sender As Object, e As TabControlCancelEventArgs) Handles tabControl.Selecting
+        Select Case currentTabPageIndex
+            Case 0
+                If bookingDetailLocked() Then
+                    MsgBox("Make sure that you insert all detail")
+                    e.Cancel = True
+                End If
+            Case 1
+                If tabControl.SelectedIndex = 2 And partyDetailLocked() Then
+                    MsgBox("Make sure that you insert the number of people")
+                    e.Cancel = True
+                End If
+        End Select
+    End Sub
+
+    Private Sub bck_to_booking_detailBtn_Click(sender As Object, e As EventArgs) Handles bck_to_booking_detailBtn.Click
+
+    End Sub
+
+    Private Sub bck_to_homeBtn_Click(sender As Object, e As EventArgs) Handles bck_to_homeBtn.Click
+        'hide BookSystem
+        GlobalVariable.bookSystem.Hide()
+        'show Main
+        GlobalVariable.main.Show()
+    End Sub
+
+    Private Sub TabControl_Selected(sender As Object, e As TabControlEventArgs) Handles tabControl.Selected
+        Select Case tabControl.SelectedIndex
+            Case 0
+                Me.Size = New Size(402, 612)
+            Case 1
+                Me.Size = New Size(402, 386)
+            Case 2
+                Me.Size = New Size(402, 386)
+        End Select
+
+        currentTabPageIndex = tabControl.SelectedIndex
+    End Sub
+
+    Private Sub cake_customCheckbx_CheckedChanged(sender As Object, e As EventArgs) Handles cake_customCheckbx.CheckedChanged
+        If cake_customCheckbx.Checked Then
+            small_cakeRadioBtn.Text = "Small (£15)"
+            medium_cakeRadioBtn.Text = "Medium (£30)"
+            large_cakeRadioBtn.Text = "Large (£52.50)"
+        Else
+            small_cakeRadioBtn.Text = "Small (£10)"
+            medium_cakeRadioBtn.Text = "Medium (£20)"
+            large_cakeRadioBtn.Text = "Large (£35)"
+        End If
+    End Sub
+
+    Private Sub bannerCheckbx_CheckedChanged(sender As Object, e As EventArgs) Handles bannerCheckbx.CheckedChanged
+        bannerTxt.Visible = bannerCheckbx.Checked
+    End Sub
 End Class

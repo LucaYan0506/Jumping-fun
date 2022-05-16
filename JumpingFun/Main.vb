@@ -14,8 +14,6 @@
     End Sub
 
     Private Sub Main_HelpButtonClicked(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles MyBase.HelpButtonClicked
-        'hide main
-        GlobalVariable.main.Hide()
         'show bookSystem
         GlobalVariable.help.Show()
     End Sub

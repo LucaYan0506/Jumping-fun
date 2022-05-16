@@ -22,7 +22,7 @@ Partial Class BookSystem
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.TabControl = New System.Windows.Forms.TabControl()
+        Me.tabControl = New System.Windows.Forms.TabControl()
         Me.booking_detailPage = New System.Windows.Forms.TabPage()
         Me.date_paryLbl = New System.Windows.Forms.Label()
         Me.nxt_to_party_detailBtn = New System.Windows.Forms.Button()
@@ -75,7 +75,7 @@ Partial Class BookSystem
         Me.ListBox3 = New System.Windows.Forms.ListBox()
         Me.costlList = New System.Windows.Forms.ListBox()
         Me.detailList = New System.Windows.Forms.ListBox()
-        Me.TabControl.SuspendLayout()
+        Me.tabControl.SuspendLayout()
         Me.booking_detailPage.SuspendLayout()
         Me.Custom_Calendar.SuspendLayout()
         Me.Calender_date_container.SuspendLayout()
@@ -84,16 +84,16 @@ Partial Class BookSystem
         Me.receiptPage.SuspendLayout()
         Me.SuspendLayout()
         '
-        'TabControl
+        'tabControl
         '
-        Me.TabControl.Controls.Add(Me.booking_detailPage)
-        Me.TabControl.Controls.Add(Me.party_detailPage)
-        Me.TabControl.Controls.Add(Me.receiptPage)
-        Me.TabControl.Location = New System.Drawing.Point(0, 0)
-        Me.TabControl.Name = "TabControl"
-        Me.TabControl.SelectedIndex = 0
-        Me.TabControl.Size = New System.Drawing.Size(398, 579)
-        Me.TabControl.TabIndex = 0
+        Me.tabControl.Controls.Add(Me.booking_detailPage)
+        Me.tabControl.Controls.Add(Me.party_detailPage)
+        Me.tabControl.Controls.Add(Me.receiptPage)
+        Me.tabControl.Location = New System.Drawing.Point(0, 0)
+        Me.tabControl.Name = "tabControl"
+        Me.tabControl.SelectedIndex = 0
+        Me.tabControl.Size = New System.Drawing.Size(398, 579)
+        Me.tabControl.TabIndex = 0
         '
         'booking_detailPage
         '
@@ -407,6 +407,7 @@ Partial Class BookSystem
         Me.bannerTxt.Name = "bannerTxt"
         Me.bannerTxt.Size = New System.Drawing.Size(365, 29)
         Me.bannerTxt.TabIndex = 17
+        Me.bannerTxt.Visible = False
         '
         'bannerCheckbx
         '
@@ -422,7 +423,7 @@ Partial Class BookSystem
         '
         Me.large_cakeRadioBtn.AutoSize = True
         Me.large_cakeRadioBtn.Font = New System.Drawing.Font("Segoe UI", 9.75!)
-        Me.large_cakeRadioBtn.Location = New System.Drawing.Point(293, 193)
+        Me.large_cakeRadioBtn.Location = New System.Drawing.Point(275, 193)
         Me.large_cakeRadioBtn.Name = "large_cakeRadioBtn"
         Me.large_cakeRadioBtn.Size = New System.Drawing.Size(92, 21)
         Me.large_cakeRadioBtn.TabIndex = 11
@@ -434,7 +435,7 @@ Partial Class BookSystem
         '
         Me.medium_cakeRadioBtn.AutoSize = True
         Me.medium_cakeRadioBtn.Font = New System.Drawing.Font("Segoe UI", 9.75!)
-        Me.medium_cakeRadioBtn.Location = New System.Drawing.Point(180, 193)
+        Me.medium_cakeRadioBtn.Location = New System.Drawing.Point(170, 193)
         Me.medium_cakeRadioBtn.Name = "medium_cakeRadioBtn"
         Me.medium_cakeRadioBtn.Size = New System.Drawing.Size(107, 21)
         Me.medium_cakeRadioBtn.TabIndex = 10
@@ -446,7 +447,7 @@ Partial Class BookSystem
         '
         Me.small_cakeRadioBtn.AutoSize = True
         Me.small_cakeRadioBtn.Font = New System.Drawing.Font("Segoe UI", 9.75!)
-        Me.small_cakeRadioBtn.Location = New System.Drawing.Point(84, 193)
+        Me.small_cakeRadioBtn.Location = New System.Drawing.Point(78, 193)
         Me.small_cakeRadioBtn.Name = "small_cakeRadioBtn"
         Me.small_cakeRadioBtn.Size = New System.Drawing.Size(90, 21)
         Me.small_cakeRadioBtn.TabIndex = 9
@@ -537,9 +538,9 @@ Partial Class BookSystem
         Me.n_ballonsLbl.AutoSize = True
         Me.n_ballonsLbl.Location = New System.Drawing.Point(57, 46)
         Me.n_ballonsLbl.Name = "n_ballonsLbl"
-        Me.n_ballonsLbl.Size = New System.Drawing.Size(94, 21)
+        Me.n_ballonsLbl.Size = New System.Drawing.Size(106, 21)
         Me.n_ballonsLbl.TabIndex = 4
-        Me.n_ballonsLbl.Text = "N. of people"
+        Me.n_ballonsLbl.Text = "N. of balloons"
         '
         'n_peopleCombobx
         '
@@ -578,7 +579,7 @@ Partial Class BookSystem
         '
         'saveBtn
         '
-        Me.saveBtn.Location = New System.Drawing.Point(254, 252)
+        Me.saveBtn.Location = New System.Drawing.Point(254, 281)
         Me.saveBtn.Name = "saveBtn"
         Me.saveBtn.Size = New System.Drawing.Size(119, 32)
         Me.saveBtn.TabIndex = 3
@@ -587,7 +588,7 @@ Partial Class BookSystem
         '
         'bck_to_party_detailBtn
         '
-        Me.bck_to_party_detailBtn.Location = New System.Drawing.Point(6, 252)
+        Me.bck_to_party_detailBtn.Location = New System.Drawing.Point(6, 281)
         Me.bck_to_party_detailBtn.Name = "bck_to_party_detailBtn"
         Me.bck_to_party_detailBtn.Size = New System.Drawing.Size(75, 32)
         Me.bck_to_party_detailBtn.TabIndex = 17
@@ -599,7 +600,7 @@ Partial Class BookSystem
         Me.tot_costTxt.FormattingEnabled = True
         Me.tot_costTxt.ItemHeight = 21
         Me.tot_costTxt.Items.AddRange(New Object() {"£153.50"})
-        Me.tot_costTxt.Location = New System.Drawing.Point(293, 221)
+        Me.tot_costTxt.Location = New System.Drawing.Point(293, 242)
         Me.tot_costTxt.Name = "tot_costTxt"
         Me.tot_costTxt.Size = New System.Drawing.Size(82, 25)
         Me.tot_costTxt.TabIndex = 19
@@ -609,7 +610,7 @@ Partial Class BookSystem
         Me.totTxt.FormattingEnabled = True
         Me.totTxt.ItemHeight = 21
         Me.totTxt.Items.AddRange(New Object() {"Total"})
-        Me.totTxt.Location = New System.Drawing.Point(8, 221)
+        Me.totTxt.Location = New System.Drawing.Point(8, 242)
         Me.totTxt.Name = "totTxt"
         Me.totTxt.Size = New System.Drawing.Size(286, 25)
         Me.totTxt.TabIndex = 18
@@ -632,7 +633,7 @@ Partial Class BookSystem
         Me.costlList.Items.AddRange(New Object() {"£10.00", "£7.50", "£36.00", "£60.00", "£30.00", "£10.00", ""})
         Me.costlList.Location = New System.Drawing.Point(293, 8)
         Me.costlList.Name = "costlList"
-        Me.costlList.Size = New System.Drawing.Size(82, 214)
+        Me.costlList.Size = New System.Drawing.Size(82, 235)
         Me.costlList.TabIndex = 1
         '
         'detailList
@@ -642,7 +643,7 @@ Partial Class BookSystem
         Me.detailList.Items.AddRange(New Object() {"Administrative cost ", "Helium Balloons * 5", "Party bags * 12", "Branded water bottles * 12", "Socks * 12", "Small cake"})
         Me.detailList.Location = New System.Drawing.Point(8, 8)
         Me.detailList.Name = "detailList"
-        Me.detailList.Size = New System.Drawing.Size(286, 214)
+        Me.detailList.Size = New System.Drawing.Size(286, 235)
         Me.detailList.TabIndex = 0
         '
         'BookSystem
@@ -650,10 +651,10 @@ Partial Class BookSystem
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(386, 573)
-        Me.Controls.Add(Me.TabControl)
+        Me.Controls.Add(Me.tabControl)
         Me.Name = "BookSystem"
         Me.Text = "BookSystem"
-        Me.TabControl.ResumeLayout(False)
+        Me.tabControl.ResumeLayout(False)
         Me.booking_detailPage.ResumeLayout(False)
         Me.booking_detailPage.PerformLayout()
         Me.Custom_Calendar.ResumeLayout(False)
@@ -667,7 +668,7 @@ Partial Class BookSystem
 
     End Sub
 
-    Friend WithEvents TabControl As TabControl
+    Friend WithEvents tabControl As TabControl
     Friend WithEvents booking_detailPage As TabPage
     Friend WithEvents party_detailPage As TabPage
     Friend WithEvents receiptPage As TabPage
