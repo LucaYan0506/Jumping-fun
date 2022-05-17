@@ -7,19 +7,25 @@
     Const adminCost As Integer = 10
     Const guestsFee As Integer = 5
     Dim nGuests As Integer
-    Dim ballonCost As Double = 7.5
-    Dim nBallons As Integer
+    Const ballonCost As Decimal = 7.5
     Const bagCost As Integer = 3
     Const bottleCost As Integer = 5
-    Const sockCost As Double = 2.5
+    Const sockCost As Decimal = 2.5
+    Const smallCakeCost As Integer = 10
+    Const mediumCakeCost As Integer = 20
+    Const largeCakeCost As Integer = 35
+    Const customCake As Decimal = 1.5
     Const bannerCost As Integer = 5
     Const letterCost As Integer = 1
     Const discount As Integer = 10
-    Dim totalCost As Double
+    Dim totalCost As Decimal
     Dim organiserName, address, post_code, phoneNumber As String
     Dim dateParty As Date
 
     Dim currentTabPageIndex = 0
+
+    'variable for key event
+    Dim notNumber, notBack As Boolean
 
     Function bookingDetailLocked() As Boolean
         organiserName = customer_nameTxt.Text
@@ -27,7 +33,20 @@
         post_code = post_codeTxt.Text
         phoneNumber = phone_numberTxt.Text
 
-        If organiserName = "" Or address = "" Or post_code = "" Or phoneNumber = "" Or date_paryLbl.Text = "Date of party" Then
+        If organiserName.Replace(" ", "") = "" Then
+            MsgBox("Please, make sure that you inserted the customer name")
+            Return True
+        ElseIf address.Replace(" ", "") = "" Then
+            MsgBox("Please, make sure that you inserted the address")
+            Return True
+        ElseIf post_code.Replace(" ", "") = "" Then
+            MsgBox("Please, make sure that you inserted the post code")
+            Return True
+        ElseIf phoneNumber.Replace(" ", "") = "" Then
+            MsgBox("Please, make sure that you inserted the phone number")
+            Return True
+        ElseIf date_paryLbl.Text = "Date of party" Then
+            MsgBox("Please, make sure that you chose the date of party")
             Return True
         End If
 
@@ -35,9 +54,85 @@
     End Function
 
     Function partyDetailLocked() As Boolean
+        If n_peopleCombobx.SelectedItem = Nothing Then
+            Return True
+        End If
+
         nGuests = Integer.Parse(n_peopleCombobx.SelectedItem)
         Return nGuests = Nothing
     End Function
+
+    Private Sub showReceipt()
+        'admin cost
+        totalCost = adminCost
+        costList.Rows.Add("Administrative cost", adminCost.ToString("F2"))
+        'guess fee
+        totalCost += guestsFee * nGuests
+        costList.Rows.Add("Guests Fee * " + nGuests.ToString(), "£" + (guestsFee * nGuests).ToString("F2"))
+        'balloons
+        If n_ballonsCombobx.SelectedItem <> Nothing Then
+            Dim ballons As Decimal = ballonCost * Integer.Parse(n_ballonsCombobx.SelectedIndex)
+            totalCost += ballons
+            costList.Rows.Add("Helium Balloons * " + (Integer.Parse(n_ballonsCombobx.SelectedIndex)).ToString(), "£" + (ballons).ToString("F2"))
+        End If
+        'bags
+        If bagsCheckbx.Checked Then
+            totalCost += bagCost * nGuests
+            costList.Rows.Add("Party bags * " + (nGuests).ToString(), "£" + (bagCost * nGuests).ToString("F2"))
+        End If
+        'water bottle
+        If bottleCheckbx.Checked Then
+            totalCost += bottleCost * nGuests
+            costList.Rows.Add("Branded water bottles * " + (nGuests).ToString(), "£" + (bottleCost * nGuests).ToString("F2"))
+        End If
+        'socks
+        If socksCheckbx.Checked Then
+            totalCost += sockCost * nGuests
+            costList.Rows.Add("Socks * " + (nGuests).ToString(), "£" + (sockCost * nGuests).ToString("F2"))
+        End If
+
+        'cake
+        '0 nocake
+        '1 small cake
+        '2 medium cake
+        '3 large cake
+        Dim cake As String = "Cake (none)"
+        Dim cakeCost As Decimal = 0
+        If small_cakeRadioBtn.Checked Then
+            cake = "Cake (small)"
+            cakeCost = smallCakeCost
+        ElseIf medium_cakeRadioBtn.Checked Then
+            cake = "Cake (medium)"
+            cakeCost = mediumCakeCost
+        ElseIf large_cakeRadioBtn.Checked Then
+            cake = "Cake (large)"
+            cakeCost = largeCakeCost
+        End If
+
+        If cake_customCheckbx.Checked Then
+            cake = "Customised " + cake
+            cakeCost *= 1.5
+        End If
+
+        costList.Rows.Add(cake, "£" + (cakeCost).ToString("F2"))
+
+
+        'banner
+        If bannerCheckbx.Checked Then
+            totalCost += bannerCost
+            costList.Rows.Add("Banner cost", "£" + (bannerCost).ToString("F2"))
+            totalCost += bannerTxt.Text.Length * letterCost
+            costList.Rows.Add("Letters cost * " + bannerTxt.Text.Length.ToString(), "£" + (bannerCost).ToString("F2"))
+        End If
+
+        'discount
+        If totalCost > 250 Then
+            totalCost = totalCost - totalCost * discount / 100
+            costList.Rows.Add("Discount", "-" + (discount).ToString() + "%")
+        End If
+        tot_costTxt.Items.Clear()
+        tot_costTxt.Items.Add("£" + totalCost.ToString("F2"))
+    End Sub
 
     Private Sub show_days()
         'Find the first day of the month
@@ -131,6 +226,8 @@
     End Sub
 
     Private Sub BookSystem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        costList.ScrollBars = ScrollBars.Vertical
+
         'show dates of the current month
         Calendar_date.Text = curr_date.ToString("MMMM") & " " & curr_date.Year
         show_days()
@@ -180,19 +277,21 @@
         Select Case currentTabPageIndex
             Case 0
                 If bookingDetailLocked() Then
-                    MsgBox("Make sure that you insert all detail")
                     e.Cancel = True
                 End If
             Case 1
                 If tabControl.SelectedIndex = 2 And partyDetailLocked() Then
                     MsgBox("Make sure that you insert the number of people")
                     e.Cancel = True
+                Else
+                    showReceipt()
                 End If
         End Select
     End Sub
 
     Private Sub bck_to_booking_detailBtn_Click(sender As Object, e As EventArgs) Handles bck_to_booking_detailBtn.Click
-
+        'go to the first tab page
+        tabControl.SelectedIndex = 0
     End Sub
 
     Private Sub bck_to_homeBtn_Click(sender As Object, e As EventArgs) Handles bck_to_homeBtn.Click
@@ -200,6 +299,39 @@
         GlobalVariable.bookSystem.Hide()
         'show Main
         GlobalVariable.main.Show()
+    End Sub
+
+    Private Sub phone_numberTxt_KeyDown(sender As Object, e As KeyEventArgs) Handles phone_numberTxt.KeyDown
+        'if keydown is back
+        notBack = e.KeyCode <> Keys.Back
+    End Sub
+
+    Private Sub nxt_to_party_detailBtn_Click(sender As Object, e As EventArgs) Handles nxt_to_party_detailBtn.Click
+        'go to the second tab page
+        tabControl.SelectedIndex = 1
+    End Sub
+
+    Private Sub nxt_to_receiptBtn_Click(sender As Object, e As EventArgs) Handles nxt_to_receiptBtn.Click
+        'go to the third tab page
+        tabControl.SelectedIndex = 2
+    End Sub
+
+    Private Sub saveBtn_Click(sender As Object, e As EventArgs) Handles saveBtn.Click
+        SaveFileDialog1.Title = "Receipt"
+        SaveFileDialog1.DefaultExt = "txt"
+        SaveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
+        SaveFileDialog1.FileName = "receipt"
+        If SaveFileDialog1.ShowDialog = DialogResult.OK Then
+            MsgBox(SaveFileDialog1.FileName)
+        End If
+    End Sub
+
+    Private Sub phone_numberTxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles phone_numberTxt.KeyPress
+        'if length is 11 or is not a number cancel the key event
+        'if key is back don't cancel the event
+        If (phone_numberTxt.Text.Length = 11 Or Not Char.IsDigit(e.KeyChar)) And notBack Then
+            e.Handled = True
+        End If
     End Sub
 
     Private Sub TabControl_Selected(sender As Object, e As TabControlEventArgs) Handles tabControl.Selected

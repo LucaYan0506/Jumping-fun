@@ -68,13 +68,14 @@ Partial Class BookSystem
         Me.n_peopleCombobx = New System.Windows.Forms.ComboBox()
         Me.n_peopleLbl = New System.Windows.Forms.Label()
         Me.receiptPage = New System.Windows.Forms.TabPage()
+        Me.costList = New System.Windows.Forms.DataGridView()
         Me.saveBtn = New System.Windows.Forms.Button()
         Me.bck_to_party_detailBtn = New System.Windows.Forms.Button()
         Me.tot_costTxt = New System.Windows.Forms.ListBox()
         Me.totTxt = New System.Windows.Forms.ListBox()
-        Me.ListBox3 = New System.Windows.Forms.ListBox()
-        Me.costlList = New System.Windows.Forms.ListBox()
-        Me.detailList = New System.Windows.Forms.ListBox()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.tabControl.SuspendLayout()
         Me.booking_detailPage.SuspendLayout()
         Me.Custom_Calendar.SuspendLayout()
@@ -82,6 +83,7 @@ Partial Class BookSystem
         Me.dayOfWeekContainer.SuspendLayout()
         Me.party_detailPage.SuspendLayout()
         Me.receiptPage.SuspendLayout()
+        CType(Me.costList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tabControl
@@ -285,7 +287,7 @@ Partial Class BookSystem
         Me.post_codeTxt.Location = New System.Drawing.Point(240, 73)
         Me.post_codeTxt.Name = "post_codeTxt"
         Me.post_codeTxt.Size = New System.Drawing.Size(137, 25)
-        Me.post_codeTxt.TabIndex = 6
+        Me.post_codeTxt.TabIndex = 2
         '
         'post_codeLbl
         '
@@ -301,10 +303,10 @@ Partial Class BookSystem
         '
         Me.addressTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.addressTxt.Font = New System.Drawing.Font("Segoe UI", 9.75!)
-        Me.addressTxt.Location = New System.Drawing.Point(11, 73)
+        Me.addressTxt.Location = New System.Drawing.Point(9, 73)
         Me.addressTxt.Name = "addressTxt"
         Me.addressTxt.Size = New System.Drawing.Size(223, 25)
-        Me.addressTxt.TabIndex = 4
+        Me.addressTxt.TabIndex = 1
         '
         'addressLbl
         '
@@ -323,7 +325,7 @@ Partial Class BookSystem
         Me.phone_numberTxt.Location = New System.Drawing.Point(8, 120)
         Me.phone_numberTxt.Name = "phone_numberTxt"
         Me.phone_numberTxt.Size = New System.Drawing.Size(369, 25)
-        Me.phone_numberTxt.TabIndex = 2
+        Me.phone_numberTxt.TabIndex = 3
         '
         'phone_numberLbl
         '
@@ -561,13 +563,11 @@ Partial Class BookSystem
         '
         'receiptPage
         '
+        Me.receiptPage.Controls.Add(Me.costList)
         Me.receiptPage.Controls.Add(Me.saveBtn)
         Me.receiptPage.Controls.Add(Me.bck_to_party_detailBtn)
         Me.receiptPage.Controls.Add(Me.tot_costTxt)
         Me.receiptPage.Controls.Add(Me.totTxt)
-        Me.receiptPage.Controls.Add(Me.ListBox3)
-        Me.receiptPage.Controls.Add(Me.costlList)
-        Me.receiptPage.Controls.Add(Me.detailList)
         Me.receiptPage.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.receiptPage.Location = New System.Drawing.Point(4, 22)
         Me.receiptPage.Name = "receiptPage"
@@ -576,6 +576,18 @@ Partial Class BookSystem
         Me.receiptPage.TabIndex = 2
         Me.receiptPage.Text = "Receipt"
         Me.receiptPage.UseVisualStyleBackColor = True
+        '
+        'costList
+        '
+        Me.costList.AllowUserToAddRows = False
+        Me.costList.AllowUserToDeleteRows = False
+        Me.costList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.costList.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
+        Me.costList.Location = New System.Drawing.Point(8, 6)
+        Me.costList.Name = "costList"
+        Me.costList.ReadOnly = True
+        Me.costList.Size = New System.Drawing.Size(365, 235)
+        Me.costList.TabIndex = 20
         '
         'saveBtn
         '
@@ -600,7 +612,7 @@ Partial Class BookSystem
         Me.tot_costTxt.FormattingEnabled = True
         Me.tot_costTxt.ItemHeight = 21
         Me.tot_costTxt.Items.AddRange(New Object() {"£153.50"})
-        Me.tot_costTxt.Location = New System.Drawing.Point(293, 242)
+        Me.tot_costTxt.Location = New System.Drawing.Point(291, 241)
         Me.tot_costTxt.Name = "tot_costTxt"
         Me.tot_costTxt.Size = New System.Drawing.Size(82, 25)
         Me.tot_costTxt.TabIndex = 19
@@ -610,41 +622,24 @@ Partial Class BookSystem
         Me.totTxt.FormattingEnabled = True
         Me.totTxt.ItemHeight = 21
         Me.totTxt.Items.AddRange(New Object() {"Total"})
-        Me.totTxt.Location = New System.Drawing.Point(8, 242)
+        Me.totTxt.Location = New System.Drawing.Point(8, 241)
         Me.totTxt.Name = "totTxt"
-        Me.totTxt.Size = New System.Drawing.Size(286, 25)
+        Me.totTxt.Size = New System.Drawing.Size(284, 25)
         Me.totTxt.TabIndex = 18
         '
-        'ListBox3
+        'Column1
         '
-        Me.ListBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.ItemHeight = 21
-        Me.ListBox3.Items.AddRange(New Object() {"+", "+", "+", "+", "+", "="})
-        Me.ListBox3.Location = New System.Drawing.Point(356, 9)
-        Me.ListBox3.Name = "ListBox3"
-        Me.ListBox3.Size = New System.Drawing.Size(17, 210)
-        Me.ListBox3.TabIndex = 2
+        Me.Column1.HeaderText = "Description"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        Me.Column1.Width = 235
         '
-        'costlList
+        'Column2
         '
-        Me.costlList.FormattingEnabled = True
-        Me.costlList.ItemHeight = 21
-        Me.costlList.Items.AddRange(New Object() {"£10.00", "£7.50", "£36.00", "£60.00", "£30.00", "£10.00", ""})
-        Me.costlList.Location = New System.Drawing.Point(293, 8)
-        Me.costlList.Name = "costlList"
-        Me.costlList.Size = New System.Drawing.Size(82, 235)
-        Me.costlList.TabIndex = 1
-        '
-        'detailList
-        '
-        Me.detailList.FormattingEnabled = True
-        Me.detailList.ItemHeight = 21
-        Me.detailList.Items.AddRange(New Object() {"Administrative cost ", "Helium Balloons * 5", "Party bags * 12", "Branded water bottles * 12", "Socks * 12", "Small cake"})
-        Me.detailList.Location = New System.Drawing.Point(8, 8)
-        Me.detailList.Name = "detailList"
-        Me.detailList.Size = New System.Drawing.Size(286, 235)
-        Me.detailList.TabIndex = 0
+        Me.Column2.HeaderText = "Cost"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        Me.Column2.Width = 77
         '
         'BookSystem
         '
@@ -664,6 +659,7 @@ Partial Class BookSystem
         Me.party_detailPage.ResumeLayout(False)
         Me.party_detailPage.PerformLayout()
         Me.receiptPage.ResumeLayout(False)
+        CType(Me.costList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -716,9 +712,10 @@ Partial Class BookSystem
     Friend WithEvents nxt_to_receiptBtn As Button
     Friend WithEvents tot_costTxt As ListBox
     Friend WithEvents totTxt As ListBox
-    Friend WithEvents ListBox3 As ListBox
-    Friend WithEvents costlList As ListBox
-    Friend WithEvents detailList As ListBox
     Friend WithEvents bck_to_party_detailBtn As Button
     Friend WithEvents saveBtn As Button
+    Friend WithEvents costList As DataGridView
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 End Class
