@@ -322,7 +322,30 @@
         SaveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
         SaveFileDialog1.FileName = "receipt"
         If SaveFileDialog1.ShowDialog = DialogResult.OK Then
-            MsgBox(SaveFileDialog1.FileName)
+            Dim file As System.IO.StreamWriter
+            file = My.Computer.FileSystem.OpenTextFileWriter(SaveFileDialog1.FileName, False)
+            file.WriteLine("Organiser detail")
+            file.WriteLine("Name: " + organiserName)
+            file.WriteLine("Address: " + address)
+            file.WriteLine("PostCode: " + post_code)
+            file.WriteLine("Phone number: " + phoneNumber)
+            file.WriteLine("")
+            file.WriteLine("Partydetail")
+            file.WriteLine("Date:" + dateParty.ToString("d"))
+            'import data from costlist
+            Dim str As String
+            For i = 0 To costList.RowCount - 1
+                str = String.Empty
+                For j = 0 To costList.ColumnCount - 1
+                    str = str & costList.Rows(i).Cells(j).Value.ToString & "|"
+                Next
+                str = str.Substring(0, str.Length - 1)
+                file.WriteLine(str)
+            Next
+            file.WriteLine("")
+            file.WriteLine("Total cost: " + totalCost.ToString())
+
+            file.Close()
         End If
     End Sub
 
