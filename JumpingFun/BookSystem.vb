@@ -1,4 +1,18 @@
-﻿Public Class BookSystem
+﻿'Date: 20/5/2022
+'Author: Zhong Yi Yan
+'Program: It allows customers to book a party using an app
+'Progress: 
+'         create BookSystem form
+
+'Date :  24/5/2022
+'Author: Zhong Yi Yan
+'Program: It allows customers to book a party using an app
+'Progress: 
+'         line 141: calculate the price of cake
+'         line 384: add uploadBtn and OpenFileDialog1
+'         line 414: show uploadBtn when cake_customCheckbx is checked
+'         line 419: hide uploadBtn when cake_customCheckbx is not checked
+Public Class BookSystem
     'get today date
     Dim curr_date As Date = Date.Now
     Dim current_tab As Integer = 0
@@ -33,18 +47,23 @@
         post_code = post_codeTxt.Text
         phoneNumber = phone_numberTxt.Text
 
+        'check if user entered the name
         If organiserName.Replace(" ", "") = "" Then
             MsgBox("Please, make sure that you inserted the customer name")
             Return True
+            'check if user entered the address
         ElseIf address.Replace(" ", "") = "" Then
             MsgBox("Please, make sure that you inserted the address")
             Return True
+            'check if user entered the postcode
         ElseIf post_code.Replace(" ", "") = "" Then
             MsgBox("Please, make sure that you inserted the post code")
             Return True
+            'check if user entered the phone number
         ElseIf phoneNumber.Replace(" ", "") = "" Then
             MsgBox("Please, make sure that you inserted the phone number")
             Return True
+            'check if user entered the date of party
         ElseIf date_paryLbl.Text = "Date of party" Then
             MsgBox("Please, make sure that you chose the date of party")
             Return True
@@ -54,6 +73,7 @@
     End Function
 
     Function partyDetailLocked() As Boolean
+        'check if user entered the number of people 
         If n_peopleCombobx.SelectedItem = Nothing Then
             Return True
         End If
@@ -63,32 +83,35 @@
     End Function
 
     Private Sub showReceipt()
+        'clear table
+        costList.Rows.Clear()
+
         'admin cost
         totalCost = adminCost
-        costList.Rows.Add("Administrative cost", adminCost.ToString("F2"))
+        costList.Rows.Add("Administrative cost", "£" + adminCost.ToString("F2"))
         'guess fee
         totalCost += guestsFee * nGuests
-        costList.Rows.Add("Guests Fee * " + nGuests.ToString(), "£" + (guestsFee * nGuests).ToString("F2"))
+        costList.Rows.Add("Guests Fee X " + nGuests.ToString(), "£" + (guestsFee * nGuests).ToString("F2"))
         'balloons
         If n_ballonsCombobx.SelectedItem <> Nothing Then
             Dim ballons As Decimal = ballonCost * Integer.Parse(n_ballonsCombobx.SelectedIndex)
             totalCost += ballons
-            costList.Rows.Add("Helium Balloons * " + (Integer.Parse(n_ballonsCombobx.SelectedIndex)).ToString(), "£" + (ballons).ToString("F2"))
+            costList.Rows.Add("Helium Balloons X " + (Integer.Parse(n_ballonsCombobx.SelectedIndex)).ToString(), "£" + (ballons).ToString("F2"))
         End If
         'bags
         If bagsCheckbx.Checked Then
             totalCost += bagCost * nGuests
-            costList.Rows.Add("Party bags * " + (nGuests).ToString(), "£" + (bagCost * nGuests).ToString("F2"))
+            costList.Rows.Add("Party bags X " + (nGuests).ToString(), "£" + (bagCost * nGuests).ToString("F2"))
         End If
         'water bottle
         If bottleCheckbx.Checked Then
             totalCost += bottleCost * nGuests
-            costList.Rows.Add("Branded water bottles * " + (nGuests).ToString(), "£" + (bottleCost * nGuests).ToString("F2"))
+            costList.Rows.Add("Branded water bottles X " + (nGuests).ToString(), "£" + (bottleCost * nGuests).ToString("F2"))
         End If
         'socks
         If socksCheckbx.Checked Then
             totalCost += sockCost * nGuests
-            costList.Rows.Add("Socks * " + (nGuests).ToString(), "£" + (sockCost * nGuests).ToString("F2"))
+            costList.Rows.Add("Socks X " + (nGuests).ToString(), "£" + (sockCost * nGuests).ToString("F2"))
         End If
 
         'cake
@@ -115,19 +138,19 @@
         End If
 
         costList.Rows.Add(cake, "£" + (cakeCost).ToString("F2"))
-
+        totalCost += cakeCost
 
         'banner
         If bannerCheckbx.Checked Then
             totalCost += bannerCost
             costList.Rows.Add("Banner cost", "£" + (bannerCost).ToString("F2"))
             totalCost += bannerTxt.Text.Length * letterCost
-            costList.Rows.Add("Letters cost * " + bannerTxt.Text.Length.ToString(), "£" + (bannerCost).ToString("F2"))
+            costList.Rows.Add("Letters cost * " + bannerTxt.Text.Length.ToString(), "£" + (bannerTxt.Text.Length * letterCost).ToString("F2"))
         End If
 
         'discount
         If totalCost > 250 Then
-            totalCost = totalCost - totalCost * discount / 100
+            totalCost = totalCost - totalCost * discount / 100.0
             costList.Rows.Add("Discount", "-" + (discount).ToString() + "%")
         End If
         tot_costTxt.Items.Clear()
@@ -343,9 +366,25 @@
                 file.WriteLine(str)
             Next
             file.WriteLine("")
-            file.WriteLine("Total cost: " + totalCost.ToString())
+            file.WriteLine("Total cost: £" + totalCost.ToString("F2"))
 
             file.Close()
+        End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        MsgBox(large_cakeRadioBtn.Checked)
+    End Sub
+
+    Private Sub bck_to_party_detailBtn_Click(sender As Object, e As EventArgs) Handles bck_to_party_detailBtn.Click
+        'go to the second tab page
+        tabControl.SelectedIndex = 1
+    End Sub
+
+    Private Sub uploadBtn_Click(sender As Object, e As EventArgs) Handles uploadBtn.Click
+        OpenFileDialog1.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png"
+        If OpenFileDialog1.ShowDialog = DialogResult.OK Then
+            uploadBtn.Text = OpenFileDialog1.FileName.Substring(OpenFileDialog1.FileName.LastIndexOf("\") + 1)
         End If
     End Sub
 
@@ -372,10 +411,12 @@
 
     Private Sub cake_customCheckbx_CheckedChanged(sender As Object, e As EventArgs) Handles cake_customCheckbx.CheckedChanged
         If cake_customCheckbx.Checked Then
+            uploadBtn.Visible = True
             small_cakeRadioBtn.Text = "Small (£15)"
             medium_cakeRadioBtn.Text = "Medium (£30)"
             large_cakeRadioBtn.Text = "Large (£52.50)"
         Else
+            uploadBtn.Visible = False
             small_cakeRadioBtn.Text = "Small (£10)"
             medium_cakeRadioBtn.Text = "Medium (£20)"
             large_cakeRadioBtn.Text = "Large (£35)"

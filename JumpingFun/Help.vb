@@ -1,4 +1,15 @@
-﻿Public Class Help
+﻿'Date: 20/5/2022
+'Author: Zhong Yi Yan
+'Program: It allows customers to book a party using an app
+'Progress: 
+'         create Help form
+
+'Date: 20/5/2022
+'Author: Zhong Yi Yan
+'Program: It allows customers to book a party using an app
+'Progress: 
+'         add cakeInfo label
+Public Class Help
     Private Sub Help_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         'don't close Help, instead, hide
         e.Cancel = True
@@ -24,8 +35,10 @@
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        'save the picture temporary
         Dim Bitmap = New Bitmap(JumpingFun.My.Resources.book_system)
         Bitmap.Save("book_system.png")
+        'open the picture 
         Process.Start("book_system.png")
     End Sub
 

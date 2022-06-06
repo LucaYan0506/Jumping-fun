@@ -49,6 +49,7 @@ Partial Class BookSystem
         Me.customer_nameTxt = New System.Windows.Forms.TextBox()
         Me.customer_nameLbl = New System.Windows.Forms.Label()
         Me.party_detailPage = New System.Windows.Forms.TabPage()
+        Me.uploadBtn = New System.Windows.Forms.Button()
         Me.nxt_to_receiptBtn = New System.Windows.Forms.Button()
         Me.bck_to_booking_detailBtn = New System.Windows.Forms.Button()
         Me.bannerTxt = New System.Windows.Forms.TextBox()
@@ -69,13 +70,15 @@ Partial Class BookSystem
         Me.n_peopleLbl = New System.Windows.Forms.Label()
         Me.receiptPage = New System.Windows.Forms.TabPage()
         Me.costList = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.saveBtn = New System.Windows.Forms.Button()
         Me.bck_to_party_detailBtn = New System.Windows.Forms.Button()
         Me.tot_costTxt = New System.Windows.Forms.ListBox()
         Me.totTxt = New System.Windows.Forms.ListBox()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.company_nameLbl = New System.Windows.Forms.Label()
         Me.tabControl.SuspendLayout()
         Me.booking_detailPage.SuspendLayout()
         Me.Custom_Calendar.SuspendLayout()
@@ -358,6 +361,7 @@ Partial Class BookSystem
         '
         'party_detailPage
         '
+        Me.party_detailPage.Controls.Add(Me.uploadBtn)
         Me.party_detailPage.Controls.Add(Me.nxt_to_receiptBtn)
         Me.party_detailPage.Controls.Add(Me.bck_to_booking_detailBtn)
         Me.party_detailPage.Controls.Add(Me.bannerTxt)
@@ -384,6 +388,17 @@ Partial Class BookSystem
         Me.party_detailPage.TabIndex = 1
         Me.party_detailPage.Text = "Party detail"
         Me.party_detailPage.UseVisualStyleBackColor = True
+        '
+        'uploadBtn
+        '
+        Me.uploadBtn.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.uploadBtn.Location = New System.Drawing.Point(174, 170)
+        Me.uploadBtn.Name = "uploadBtn"
+        Me.uploadBtn.Size = New System.Drawing.Size(193, 23)
+        Me.uploadBtn.TabIndex = 18
+        Me.uploadBtn.Text = "Upload"
+        Me.uploadBtn.UseVisualStyleBackColor = True
+        Me.uploadBtn.Visible = False
         '
         'nxt_to_receiptBtn
         '
@@ -540,9 +555,9 @@ Partial Class BookSystem
         Me.n_ballonsLbl.AutoSize = True
         Me.n_ballonsLbl.Location = New System.Drawing.Point(57, 46)
         Me.n_ballonsLbl.Name = "n_ballonsLbl"
-        Me.n_ballonsLbl.Size = New System.Drawing.Size(106, 21)
+        Me.n_ballonsLbl.Size = New System.Drawing.Size(149, 21)
         Me.n_ballonsLbl.TabIndex = 4
-        Me.n_ballonsLbl.Text = "N. of balloons"
+        Me.n_ballonsLbl.Text = "Number of balloons"
         '
         'n_peopleCombobx
         '
@@ -557,9 +572,9 @@ Partial Class BookSystem
         Me.n_peopleLbl.AutoSize = True
         Me.n_peopleLbl.Location = New System.Drawing.Point(57, 11)
         Me.n_peopleLbl.Name = "n_peopleLbl"
-        Me.n_peopleLbl.Size = New System.Drawing.Size(94, 21)
+        Me.n_peopleLbl.Size = New System.Drawing.Size(135, 21)
         Me.n_peopleLbl.TabIndex = 2
-        Me.n_peopleLbl.Text = "N. of people"
+        Me.n_peopleLbl.Text = "Number of guests"
         '
         'receiptPage
         '
@@ -588,6 +603,20 @@ Partial Class BookSystem
         Me.costList.ReadOnly = True
         Me.costList.Size = New System.Drawing.Size(365, 235)
         Me.costList.TabIndex = 20
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Description"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        Me.Column1.Width = 235
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Cost"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        Me.Column2.Width = 77
         '
         'saveBtn
         '
@@ -627,25 +656,28 @@ Partial Class BookSystem
         Me.totTxt.Size = New System.Drawing.Size(284, 25)
         Me.totTxt.TabIndex = 18
         '
-        'Column1
+        'OpenFileDialog1
         '
-        Me.Column1.HeaderText = "Description"
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        Me.Column1.Width = 235
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'Column2
+        'company_nameLbl
         '
-        Me.Column2.HeaderText = "Cost"
-        Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
-        Me.Column2.Width = 77
+        Me.company_nameLbl.AutoSize = True
+        Me.company_nameLbl.BackColor = System.Drawing.Color.Transparent
+        Me.company_nameLbl.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.company_nameLbl.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.company_nameLbl.Location = New System.Drawing.Point(245, -7)
+        Me.company_nameLbl.Name = "company_nameLbl"
+        Me.company_nameLbl.Size = New System.Drawing.Size(132, 30)
+        Me.company_nameLbl.TabIndex = 1
+        Me.company_nameLbl.Text = "Jumping Fun"
         '
         'BookSystem
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(386, 573)
+        Me.Controls.Add(Me.company_nameLbl)
         Me.Controls.Add(Me.tabControl)
         Me.Name = "BookSystem"
         Me.Text = "BookSystem"
@@ -661,6 +693,7 @@ Partial Class BookSystem
         Me.receiptPage.ResumeLayout(False)
         CType(Me.costList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -718,4 +751,7 @@ Partial Class BookSystem
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents uploadBtn As Button
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents company_nameLbl As Label
 End Class

@@ -22,10 +22,14 @@ Partial Class Help
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Help))
         Me.reqLbl = New System.Windows.Forms.Label()
         Me.req_descripLbl = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.price_descripList = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.emptyBox = New System.Windows.Forms.PictureBox()
         Me.priceLbl = New System.Windows.Forms.Label()
         Me.cake_descripTable = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -34,14 +38,12 @@ Partial Class Help
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.cakeLbl = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.emptyBox = New System.Windows.Forms.PictureBox()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cakeInfo = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.price_descripList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.emptyBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cake_descripTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.emptyBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'reqLbl
@@ -68,6 +70,7 @@ Partial Class Help
         'Panel1
         '
         Me.Panel1.AutoScroll = True
+        Me.Panel1.Controls.Add(Me.cakeInfo)
         Me.Panel1.Controls.Add(Me.price_descripList)
         Me.Panel1.Controls.Add(Me.emptyBox)
         Me.Panel1.Controls.Add(Me.priceLbl)
@@ -88,17 +91,41 @@ Partial Class Help
         Me.price_descripList.AllowUserToDeleteRows = False
         Me.price_descripList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.price_descripList.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2})
-        Me.price_descripList.Location = New System.Drawing.Point(12, 369)
+        Me.price_descripList.Location = New System.Drawing.Point(12, 425)
         Me.price_descripList.Name = "price_descripList"
         Me.price_descripList.ReadOnly = True
         Me.price_descripList.Size = New System.Drawing.Size(471, 199)
         Me.price_descripList.TabIndex = 6
         '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.FillWeight = 194.9239!
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Description"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        Me.DataGridViewTextBoxColumn1.Width = 317
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.FillWeight = 5.076141!
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Cost"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        Me.DataGridViewTextBoxColumn2.Width = 110
+        '
+        'emptyBox
+        '
+        Me.emptyBox.Location = New System.Drawing.Point(36, 537)
+        Me.emptyBox.Name = "emptyBox"
+        Me.emptyBox.Size = New System.Drawing.Size(100, 50)
+        Me.emptyBox.TabIndex = 7
+        Me.emptyBox.TabStop = False
+        '
         'priceLbl
         '
         Me.priceLbl.AutoSize = True
         Me.priceLbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.priceLbl.Location = New System.Drawing.Point(11, 346)
+        Me.priceLbl.Location = New System.Drawing.Point(11, 402)
         Me.priceLbl.Name = "priceLbl"
         Me.priceLbl.Size = New System.Drawing.Size(49, 20)
         Me.priceLbl.TabIndex = 5
@@ -162,29 +189,13 @@ Partial Class Help
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
         '
-        'emptyBox
+        'cakeInfo
         '
-        Me.emptyBox.Location = New System.Drawing.Point(36, 537)
-        Me.emptyBox.Name = "emptyBox"
-        Me.emptyBox.Size = New System.Drawing.Size(100, 50)
-        Me.emptyBox.TabIndex = 7
-        Me.emptyBox.TabStop = False
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.FillWeight = 194.9239!
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Description"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        Me.DataGridViewTextBoxColumn1.Width = 317
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.FillWeight = 5.076141!
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Cost"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
-        Me.DataGridViewTextBoxColumn2.Width = 110
+        Me.cakeInfo.Location = New System.Drawing.Point(12, 341)
+        Me.cakeInfo.Name = "cakeInfo"
+        Me.cakeInfo.Size = New System.Drawing.Size(469, 61)
+        Me.cakeInfo.TabIndex = 8
+        Me.cakeInfo.Text = resources.GetString("cakeInfo.Text")
         '
         'Help
         '
@@ -197,9 +208,9 @@ Partial Class Help
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.price_descripList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.emptyBox, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cake_descripTable, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.emptyBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -219,4 +230,5 @@ Partial Class Help
     Friend WithEvents emptyBox As PictureBox
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents cakeInfo As Label
 End Class

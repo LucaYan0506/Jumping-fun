@@ -1,4 +1,9 @@
-﻿Public Class Main
+﻿'Date: 20/5/2022
+'Author: Zhong Yi Yan
+'Program: It allows customers to book a party using an app
+'Progress: 
+'         create Main form
+Public Class Main
 
     Private Sub bookBtn_Click(sender As Object, e As EventArgs) Handles bookBtn.Click
         'hide main
